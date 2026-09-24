@@ -74,9 +74,9 @@ library()
 **tidyverse** is a very popular package that we will use functions from a lot, and is actually a collection of packages. One of the packages in it is **ggplot2**, which makes it very easy to make very nice looking plots.
 
 ```{r}
-install.packages()
+install.packages("tidyverse")
 
-library()
+library(tidyverse)
 
 mpg
 
@@ -89,8 +89,8 @@ But come on, there's time for all that boring stuff later, you said we could mak
 The **fivethirtyeight** package contains data sets written about on the FiveThirtyEight blog. We're going to play with a data set of popular Halloween candies, their characteristics and how popular they are, as assessed in survey data.
 
 ```{r}
-install.packages()
-library()
+install.packages("fivethirtyeight")
+library(fivethirtyeight)
 ```
 
 What are some ways we can look at this dataset?
@@ -140,22 +140,26 @@ ggplot(<dataset>) +
 Let's do it step by step:
 
 ```{r}
-ggplot() # this line makes the space to put the plot, the background
+ggplot(candy_rankings) # this line makes the space to put the plot, the background
 ```
 
 ```{r}
-ggplot() + 
-  aes(x = ) # this says what to put on the axes
+ggplot(candy_rankings) + 
+  aes(x =chocolate ) # this says what to put on the axes
 ```
 
 ```{r}
-ggplot() # this says what kind of plot to make, in this case, a barplot that automatically did counts of the observations of which candies were chocolate or not chocolate. 
+ggplot(candy_rankings) + 
+  aes(x =chocolate )+
+  geom_bar()# this says what kind of plot to make, in this case, a barplot that automatically did counts of the observations of which candies were chocolate or not chocolate. 
 ```
 
 ggplots can be defined as an object and recalled later too. This is useful when you are adding more layers and trying things out, or when you're compiling the plots into a multiple plot figure or exporting them.
 
 ```{r}
-chocolate_bar <- 
+chocolate_bar <- ggplot(candy_rankings) + 
+  aes(x =chocolate )+
+  geom_bar()
 
 ```
 
@@ -172,18 +176,18 @@ For example, here we've plotted the win percentage (how often people ranked it i
 We're using the **geom_point()** function to plot this as a scatter plot.
 
 ```{r}
-sweetness <- ggplot() + 
-  aes(x = , y = ) + 
+sweetness <- ggplot(candy_rankings) + 
+  aes(x = sugarpercent, y = winpercent) +geom_point()
 
 
-
+sweetness
 ```
 
 To add a best-fit regression line, we can use the **geom_smooth()** function. This function has an **argument** that tells it what kind of line we'd like it to fit - in this case we specified "lm", which stands for "linear model".
 
 ```{r}
 sweetness + 
-  geom_smooth()
+  geom_smooth(method="lm")
 ```
 
 If we'd like to compare sweetness across a categorical variable, like chocolate or not chocolate, we can use a **box and whisker plot**, generated with **geom_boxplot()**. What question is this plot asking?
@@ -214,6 +218,10 @@ More detail here, to not worry about yet. https://ggplot2.tidyverse.org/referenc
 
 2.  Are sweeter candies more expensive? Do the candies with higher sugarpercent have higher winpercent? Plot this relationship.
 
+    ```{r}
+
+    ```
+
 ## PRETTY TIME!
 
 ### Modifying Colors
@@ -223,7 +231,7 @@ Reference: bit.ly/colors-r
 You can change the color in the geom argument. Test out how it works on different geoms!
 
 ```{r}
-ggplot() +  
+ggplot(candy_rankings) +  
   aes(x = ) + 
   geom_bar(color = '', fill = ) 
 ```
