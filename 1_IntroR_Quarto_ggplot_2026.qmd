@@ -470,6 +470,7 @@ Q2: Make a boxplot that compares visitation rates in all parks in 1980 to presen
 
 ```{r}
 
+
 ```
 
 Q3: Make a plot using the data of your choosing to show something interesting about either the candy_rankings data or the np_visits data.
